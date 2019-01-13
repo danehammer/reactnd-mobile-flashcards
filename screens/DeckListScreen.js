@@ -1,28 +1,31 @@
 import React from 'react';
-import {
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
-} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {getDecks} from '../storage';
+import {receiveDecks} from '../actions';
+import {connect} from 'react-redux';
+import {AppLoading} from 'expo';
 
-export default class DeckListScreen extends React.Component {
+class DeckListScreen extends React.Component {
   state = {
-    decks: {}
+    ready: false
   };
 
   componentDidMount() {
-    getDecks().then((decks) => {
-      this.setState({decks});
-    });
+    getDecks()
+      .then((decks) => {
+        this.props.dispatch(receiveDecks(decks));
+      })
+      .then(() => {
+        this.setState({ready: true});
+      });
   }
 
   render() {
-    const deckTitles = Object.keys(this.state.decks);
+    if (!this.state.ready) {
+      return <AppLoading />;
+    }
+
+    const deckTitles = Object.keys(this.props.decks);
     return (
       <View style={styles.container}>
         <View style={{height: 100}} />
@@ -41,3 +44,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff'
   }
 });
+
+function mapStateToProps(decks) {
+  return {decks};
+}
+
+export default connect(mapStateToProps)(DeckListScreen);

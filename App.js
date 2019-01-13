@@ -1,26 +1,24 @@
 import React from 'react';
-import {Platform, StatusBar, StyleSheet, View} from 'react-native';
-import {AppLoading, Asset, Font, Icon} from 'expo';
+import {StatusBar, StyleSheet, View} from 'react-native';
 import AppNavigator from './navigation/AppNavigator';
 import {Constants} from 'expo';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+import reducer from './reducers';
 
 export default class App extends React.Component {
-  state = {
-    // TODO
-    isLoadingComplete: true
-  };
+  store = createStore(reducer);
 
   render() {
-    if (!this.state.isLoadingComplete) {
-      return <AppLoading />;
-    }
     return (
-      <View style={styles.container}>
-        <View style={{height: Constants.statusBarHeight}}>
-          <StatusBar barStyle="default" />
+      <Provider store={this.store}>
+        <View style={styles.container}>
+          <View style={{height: Constants.statusBarHeight}}>
+            <StatusBar barStyle="default" />
+          </View>
+          <AppNavigator />
         </View>
-        <AppNavigator />
-      </View>
+      </Provider>
     );
   }
 }

@@ -7,8 +7,10 @@ import {
   TouchableOpacity
 } from 'react-native';
 import {saveDeckTitle} from '../storage';
+import {connect} from 'react-redux';
+import {addDeck} from '../actions';
 
-export default class NewDeckScreen extends React.Component {
+class NewDeckScreen extends React.Component {
   state = {
     title: ''
   };
@@ -20,7 +22,7 @@ export default class NewDeckScreen extends React.Component {
     }
 
     this.setState({title: ''});
-
+    this.props.dispatch(addDeck(title));
     saveDeckTitle(title).then(() => {
       alert('Saved');
     });
@@ -48,3 +50,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff'
   }
 });
+
+export default connect()(NewDeckScreen);

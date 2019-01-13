@@ -1,60 +1,51 @@
 import React from 'react';
-import { Platform } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import {Platform} from 'react-native';
+import {
+  createStackNavigator,
+  createBottomTabNavigator,
+  createMaterialTopTabNavigator
+} from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import DeckListScreen from '../screens/DeckListScreen';
+import NewDeckScreen from '../screens/NewDeckScreen';
 
-const HomeStack = createStackNavigator({
-  Home: HomeScreen,
+const DeckListStack = createStackNavigator({
+  DeckList: DeckListScreen
 });
 
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
-  tabBarIcon: ({ focused }) => (
+DeckListStack.navigationOptions = {
+  tabBarLabel: 'Decks',
+  tabBarIcon: ({focused}) => (
     <TabBarIcon
       focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
+      name={Platform.OS === 'ios' ? 'ios-albums' : 'md-albums'}
     />
-  ),
+  )
 };
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
+const NewDeckStack = createStackNavigator({
+  NewDeck: NewDeckScreen
 });
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
-  tabBarIcon: ({ focused }) => (
+NewDeckStack.navigationOptions = {
+  tabBarLabel: 'Add Deck',
+  tabBarIcon: ({focused}) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
+      name={Platform.OS === 'ios' ? 'ios-add' : 'md-add'}
     />
-  ),
+  )
 };
 
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
-});
-
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
-    />
-  ),
+const Stacks = {
+  DeckListStack,
+  NewDeckStack
 };
 
-export default createBottomTabNavigator({
-  HomeStack,
-  LinksStack,
-  SettingsStack,
-});
+const Tabs =
+  Platform.OS === 'ios'
+    ? createBottomTabNavigator(Stacks)
+    : createMaterialTopTabNavigator(Stacks);
+
+export default Tabs;

@@ -4,6 +4,7 @@ import {getDecks} from '../storage';
 import {receiveDecks} from '../actions';
 import {connect} from 'react-redux';
 import {AppLoading} from 'expo';
+import DeckSummary from '../components/DeckSummary';
 
 class DeckListScreen extends React.Component {
   state = {
@@ -28,10 +29,8 @@ class DeckListScreen extends React.Component {
     const deckTitles = Object.keys(this.props.decks);
     return (
       <View style={styles.container}>
-        <View style={{height: 100}} />
-        <Text>DeckListScreen</Text>
-        {deckTitles.map((deckTitle) => (
-          <Text key={deckTitle}>{deckTitle}</Text>
+        {deckTitles.map((title) => (
+          <DeckSummary key={title} title={title} />
         ))}
       </View>
     );

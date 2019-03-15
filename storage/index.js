@@ -15,6 +15,10 @@ const getDeck = (id) => {
   });
 };
 
+const clear = () => {
+  return AsyncStorage.removeItem(STORAGE_KEY);
+};
+
 const saveDeckTitle = (title) => {
   return AsyncStorage.mergeItem(
     STORAGE_KEY,
@@ -37,4 +41,4 @@ const addCardToDeck = (title, question) => {
   });
 };
 
-export {getDecks, getDeck, saveDeckTitle, addCardToDeck};
+export {clear, getDecks, getDeck, saveDeckTitle, addCardToDeck};

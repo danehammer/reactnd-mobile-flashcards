@@ -25,6 +25,7 @@ class NewDeckScreen extends React.Component {
     this.props.dispatch(addDeck(title));
     saveDeckTitle(title).then(() => {
       alert('Saved');
+      // TODO: navigate to deck list
     });
   };
 

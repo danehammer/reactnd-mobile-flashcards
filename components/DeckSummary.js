@@ -19,14 +19,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    textAlign: 'center'
   },
   title: {
-    fontSize: 20
+    fontSize: 24,
+    color: '#fff'
   },
   subtitle: {
-    fontSize: 16,
-    color: 'gray'
+    fontSize: 18,
+    color: '#fff'
   }
 });
 

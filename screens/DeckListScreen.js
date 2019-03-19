@@ -1,10 +1,11 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import {getDecks} from '../storage';
 import {receiveDecks} from '../actions';
 import {connect} from 'react-redux';
 import {AppLoading} from 'expo';
 import DeckSummary from '../components/DeckSummary';
+import {TouchableOpacity} from 'react-native';
 
 class DeckListScreen extends React.Component {
   state = {
@@ -28,11 +29,17 @@ class DeckListScreen extends React.Component {
 
     const deckTitles = Object.keys(this.props.decks);
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         {deckTitles.map((title) => (
-          <DeckSummary key={title} title={title} />
+          <TouchableOpacity
+            key={`touch-${title}`}
+            onPress={() => this.props.navigation.navigate('DeckView', {title})}
+            style={styles.deck}
+          >
+            <DeckSummary key={title} title={title} />
+          </TouchableOpacity>
         ))}
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -41,6 +48,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff'
+  },
+  deck: {
+    height: 200,
+    margin: 20,
+    textAlign: 'center',
+    backgroundColor: '#02b3e4',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#fff'
   }
 });
 

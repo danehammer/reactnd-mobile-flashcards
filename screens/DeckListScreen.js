@@ -29,6 +29,15 @@ class DeckListScreen extends React.Component {
 
     const {decks} = this.props;
     const deckTitles = Object.keys(decks);
+
+    if (deckTitles.length === 0) {
+      return (
+        <View style={styles.container}>
+          <Text style={styles.text}>You do not have any decks created.</Text>
+        </View>
+      );
+    }
+
     return (
       <ScrollView style={styles.container}>
         {deckTitles.map((title) => (
@@ -49,6 +58,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff'
+  },
+  text: {
+    fontSize: 36,
+    width: '100%',
+    height: '100%',
+    textAlign: 'center',
+    paddingLeft: 20,
+    paddingRight: 20,
+    marginTop: 200
   },
   deck: {
     height: 200,

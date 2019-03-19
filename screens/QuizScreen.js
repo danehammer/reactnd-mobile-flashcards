@@ -58,10 +58,25 @@ class QuizScreen extends React.Component {
             {`You got ${correctAnswers} right out of ${questions.length}`}
           </Text>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('DeckList')}
+            onPress={() =>
+              this.props.navigation.navigate('DeckView', {title: deck.title})
+            }
             style={styles.button}
           >
-            <Text style={styles.buttonText}>Done</Text>
+            <Text style={styles.buttonText}>Back to Deck</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              this.setState({
+                completed: false,
+                cardNumber: 0,
+                correctAnswers: 0,
+                answerShown: false
+              });
+            }}
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>Restart Quiz</Text>
           </TouchableOpacity>
         </View>
       );

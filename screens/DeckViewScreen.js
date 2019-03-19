@@ -26,7 +26,7 @@ class DeckViewScreen extends React.Component {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() =>
-            this.props.navigation.navigate('StartQuiz', {title: deck.title})
+            this.props.navigation.navigate('Quiz', {title: deck.title})
           }
           style={styles.button}
         >

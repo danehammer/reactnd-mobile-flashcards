@@ -11,6 +11,7 @@ import DeckListScreen from '../screens/DeckListScreen';
 import NewDeckScreen from '../screens/NewDeckScreen';
 import DeckViewScreen from '../screens/DeckViewScreen';
 import AddCardScreen from '../screens/AddCardScreen';
+import QuizScreen from '../screens/QuizScreen';
 
 const Tabs = {
   DeckList: {
@@ -65,6 +66,10 @@ const MainNavigator = createStackNavigator({
     navigationOptions: {
       title: 'Add Card'
     }
+  },
+  Quiz: {
+    screen: QuizScreen
+    // title dynamic
   }
 });
 

@@ -16,17 +16,15 @@ export default function decks(state = {}, action) {
         }
       };
     case ADD_QUESTION:
-      const newQuestions = state[action.deckTitle].questions.push({
+      const deck = state[action.deckTitle];
+      deck.questions.push({
         question: action.question,
         answer: action.answer
       });
 
       return {
         ...state,
-        [action.deckTitle]: {
-          ...action.deckTitle,
-          questions: newQuestions
-        }
+        [action.deckTitle]: deck
       };
     default:
       return state;

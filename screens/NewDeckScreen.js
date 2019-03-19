@@ -24,8 +24,7 @@ class NewDeckScreen extends React.Component {
     this.setState({title: ''});
     this.props.dispatch(addDeck(title));
     saveDeckTitle(title).then(() => {
-      alert('Saved');
-      // TODO: navigate to deck list
+      this.props.navigation.navigate('DeckView', {title});
     });
   };
 
@@ -34,6 +33,7 @@ class NewDeckScreen extends React.Component {
       <View style={styles.container}>
         <TextInput
           onChangeText={(title) => this.setState({title})}
+          style={styles.titleInput}
           placeholder="Deck Title"
           value={this.state.title}
         />
@@ -49,7 +49,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff'
-  }
+  },
+  titleInput: {}
 });
 
 export default connect()(NewDeckScreen);

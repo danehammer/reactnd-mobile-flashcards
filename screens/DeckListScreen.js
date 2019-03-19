@@ -27,7 +27,8 @@ class DeckListScreen extends React.Component {
       return <AppLoading />;
     }
 
-    const deckTitles = Object.keys(this.props.decks);
+    const {decks} = this.props;
+    const deckTitles = Object.keys(decks);
     return (
       <ScrollView style={styles.container}>
         {deckTitles.map((title) => (
@@ -36,7 +37,7 @@ class DeckListScreen extends React.Component {
             onPress={() => this.props.navigation.navigate('DeckView', {title})}
             style={styles.deck}
           >
-            <DeckSummary key={title} title={title} />
+            <DeckSummary key={title} deck={decks[title]} />
           </TouchableOpacity>
         ))}
       </ScrollView>

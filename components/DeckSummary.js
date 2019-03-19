@@ -1,8 +1,7 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-import {connect} from 'react-redux';
 
-class DeckSummary extends React.Component {
+class DeckSummary extends Component {
   render() {
     const {title, questions} = this.props.deck;
 
@@ -32,10 +31,4 @@ const styles = StyleSheet.create({
   }
 });
 
-function mapStateToProps(decks, {title}) {
-  return {
-    deck: decks[title]
-  };
-}
-
-export default connect(mapStateToProps)(DeckSummary);
+export default DeckSummary;

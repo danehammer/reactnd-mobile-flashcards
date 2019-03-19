@@ -31,11 +31,11 @@ const saveDeckTitle = (title) => {
   );
 };
 
-const addCardToDeck = (title, question) => {
+const addCardToDeck = (title, question, answer) => {
   return AsyncStorage.getItem(STORAGE_KEY).then((results) => {
     const obj = JSON.parse(results);
     const deck = obj[title];
-    deck.questions.push(question);
+    deck.questions.push({question, answer});
     obj[title] = deck;
     return AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(obj));
   });

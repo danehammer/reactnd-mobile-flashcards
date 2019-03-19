@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
+import {clearLocalNotification, setLocalNotification} from '../notifications';
 
 class QuizScreen extends React.Component {
   static navigationOptions = ({navigation}) => {
@@ -33,6 +34,7 @@ class QuizScreen extends React.Component {
 
     if (cardNumber + 1 >= deck.questions.length) {
       this.setState({completed: true});
+      clearLocalNotification().then(setLocalNotification);
       return;
     }
 

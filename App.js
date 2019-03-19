@@ -6,6 +6,7 @@ import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import reducer from './reducers';
 import {clear} from './storage';
+import {setLocalNotification} from './notifications';
 
 export default class App extends React.Component {
   state = {
@@ -13,7 +14,10 @@ export default class App extends React.Component {
   };
 
   componentDidMount() {
+    setLocalNotification();
+
     this.setState({ready: true});
+
     // uncomment this to clear AsyncStorage
     // clear().then(() => {
     //   this.setState({ready: true});

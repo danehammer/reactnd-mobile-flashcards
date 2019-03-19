@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {
   StyleSheet,
   Text,
@@ -9,9 +9,8 @@ import {
 import {addQuestion} from '../actions';
 import {connect} from 'react-redux';
 import {addCardToDeck} from '../storage';
-import {NavigationActions} from 'react-navigation';
 
-class AddCardScreen extends Component {
+class AddCardScreen extends React.Component {
   state = {
     questionText: '',
     answerText: ''
@@ -54,7 +53,7 @@ class AddCardScreen extends Component {
           value={this.state.answerText}
         />
         <TouchableOpacity onPress={this.submit} style={styles.button}>
-          <Text>Save</Text>
+          <Text style={styles.buttonText}>Save</Text>
         </TouchableOpacity>
       </View>
     );
@@ -81,7 +80,14 @@ const styles = StyleSheet.create({
     fontSize: 24,
     padding: 12
   },
-  textInput: {}
+  textInput: {
+    width: 300,
+    height: 48,
+    fontSize: 24,
+    marginBottom: 20,
+    textAlign: 'center',
+    backgroundColor: '#fff'
+  }
 });
 
 export default connect()(AddCardScreen);

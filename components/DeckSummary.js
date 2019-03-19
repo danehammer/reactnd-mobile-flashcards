@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 
-class DeckSummary extends Component {
+class DeckSummary extends React.Component {
   render() {
     const {title, questions} = this.props.deck;
 

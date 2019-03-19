@@ -24,7 +24,8 @@ class NewDeckScreen extends React.Component {
     this.setState({title: ''});
     this.props.dispatch(addDeck(title));
     saveDeckTitle(title).then(() => {
-      this.props.navigation.navigate('DeckView', {title});
+      alert(`Created deck ${title}`);
+      this.props.navigation.navigate('DeckList');
     });
   };
 
@@ -37,8 +38,8 @@ class NewDeckScreen extends React.Component {
           placeholder="Deck Title"
           value={this.state.title}
         />
-        <TouchableOpacity onPress={this.submit}>
-          <Text>Save</Text>
+        <TouchableOpacity onPress={this.submit} style={styles.button}>
+          <Text style={styles.buttonText}>Save</Text>
         </TouchableOpacity>
       </View>
     );
@@ -48,9 +49,31 @@ class NewDeckScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff'
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#02b3e4'
   },
-  titleInput: {}
+  button: {
+    width: 160,
+    marginBottom: 30,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#fff'
+  },
+  buttonText: {
+    textAlign: 'center',
+    color: '#fff',
+    fontSize: 24,
+    padding: 12
+  },
+  titleInput: {
+    width: 300,
+    height: 48,
+    fontSize: 24,
+    marginBottom: 20,
+    textAlign: 'center',
+    backgroundColor: '#fff'
+  }
 });
 
 export default connect()(NewDeckScreen);

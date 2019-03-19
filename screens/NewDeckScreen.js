@@ -24,8 +24,7 @@ class NewDeckScreen extends React.Component {
     this.setState({title: ''});
     this.props.dispatch(addDeck(title));
     saveDeckTitle(title).then(() => {
-      alert(`Created deck ${title}`);
-      this.props.navigation.navigate('DeckList');
+      this.props.navigation.navigate('DeckView', {title});
     });
   };
 
